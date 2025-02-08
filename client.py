@@ -1,5 +1,8 @@
 import socket
 import threading
+from config import ip
+#CONFIG FORMAT:
+#ip = '<ip of server>'
 
 def receive_messages(client_socket):
     while True:
@@ -18,7 +21,7 @@ def send_messages(client_socket):
 
 def start_client():
     client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    client_socket.connect(('95.143.216.22', 12345))
+    client_socket.connect((ip, 12345))
 
     receive_thread = threading.Thread(target=receive_messages, args=(client_socket,))
     receive_thread.start()
